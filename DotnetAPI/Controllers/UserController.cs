@@ -7,8 +7,8 @@ namespace DotnetAPI.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase {
 
-    public UserController(){
-
+    public UserController(IConfiguration config){
+        Console.WriteLine(config.GetConnectionString("DefaultConnection"));
     }
 
    
