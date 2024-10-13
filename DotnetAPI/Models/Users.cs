@@ -7,7 +7,8 @@ namespace DotnetAPI
         public string Email{ get; set; }
         public string Gender{ get; set; }
         public bool Active{ get; set; }
-
+        
+        // Actually, the DB table schema can set up not NULL, default ""  
         public Users(){
             if(FirstName == null ){
                 FirstName = "";
