@@ -1,6 +1,6 @@
 namespace DotnetAPI
 {
-    public partial class Users{
+    public partial class User{
         public  int UserId{ get; set; }
         public string FirstName{ get; set; }
         public string Lastname{ get; set; }
@@ -9,7 +9,7 @@ namespace DotnetAPI
         public bool Active{ get; set; }
         
         // Actually, the DB table schema can set up not NULL, default ""  
-        public Users(){
+        public User(){
             if(FirstName == null ){
                 FirstName = "";
             }
