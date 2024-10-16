@@ -61,8 +61,36 @@ public class UserController : ControllerBase {
             FROM [DotNetCourseDatabase].[TutorialAppSchema].[Users]
             WHERE  [UserId] = " + userId.ToString();
         User user = _dapper.LoadDataSingle<User>(sql);
-        return user;
-       
+        return user;       
+    }
+
+    [HttpPut("EditUser")]
+    public IActionResult EditUser(User user){
+        string sql = @"
+        UPDATE [TutorialAppSchema].[Users]
+        SET  [FirstName] = '"+ user.FirstName +"', [LastName] = '"+ user.LastName +
+        "', [Email] = '"+ user.Email +"', [Gender] = '"+ user.Gender +
+        "', [Active] = '"+ user.Active + 
+        "' WHERE  [UserId] = " + user.UserId;   
+
+        // {
+        //     "userId": 2,
+        //     "firstName": "Q7",
+        //     "lastName": "EEE",
+        //     "email": "1312312",
+        //     "gender": "1",
+        //     "active": false
+        // }
+        Console.WriteLine(sql);
+        if(_dapper.ExecuteSql(sql)){
+            return Ok();
+        }
+        throw new Exception("Failed to Update User");
+    }
+
+    [HttpPost]
+    public IActionResult AddUser(){
+        return Ok();
     }
 
  
