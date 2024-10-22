@@ -88,9 +88,46 @@ public class UserController : ControllerBase {
         throw new Exception("Failed to Update User");
     }
 
-    [HttpPost]
-    public IActionResult AddUser(){
-        return Ok();
+    [HttpPost("AddUser")]
+    public IActionResult AddUser(User user){
+        string sql = @"
+        INSERT INTO [TutorialAppSchema].[Users](        
+            [FirstName],
+            [LastName],
+            [Email],
+            [Gender],
+            [Active]
+        ) VALUES ( " +
+            "'"+ user.FirstName + "','"
+            + user.LastName +"','"
+            + user.Email +"','"
+            + user.Gender +"','"
+            + user.Active + "'" +
+         ")";
+
+        //  INSERT INTO [TutorialAppSchema].[Users](        
+        //     [FirstName],
+        //     [LastName],
+        //     [Email],
+        //     [Gender],
+        //     [Active]
+        // ) VALUES ( 'string','string','string','string','True')
+
+
+        //    {
+        //     "userId": 0,
+        //     "firstName": "string",
+        //     "lastName": "string",
+        //     "email": "33333@QQ.COM",
+        //     "gender": "string",
+        //     "active": true
+        //     }
+         
+        Console.WriteLine(sql);
+        if(_dapper.ExecuteSql(sql)){
+            return Ok();
+        }
+        throw new Exception("Failed to Update User");
     }
 
  
