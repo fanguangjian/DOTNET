@@ -45,6 +45,14 @@ namespace DotnetAPI.Data
 
         }
 
+        internal int SavedChanges()
+        {
+            throw new NotImplementedException();
+        }
 
+        public static implicit operator DataContextEF(DataContextDapper v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
